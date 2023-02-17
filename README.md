@@ -1,4 +1,4 @@
-# AngularCrash
+# AngularCrash based on Traversy Media's Tutorial 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.6.
 
