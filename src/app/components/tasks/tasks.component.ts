@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { TaskService } from 'src/app/services/task.service';
 import { Task } from 'src/app/Task';
-import { TASKS } from 'src/app/mock-tasks';
 
 @Component({
   selector: 'app-tasks',
@@ -8,5 +8,22 @@ import { TASKS } from 'src/app/mock-tasks';
   styleUrls: ['./tasks.component.css'],
 })
 export class TasksComponent {
-  tasks: Task[] = TASKS;
+  tasks: Task[] = [];
+
+  //to use a service you need to add to constructor
+  constructor(private taskService: TaskService) {}
+
+  //.subscribe is watching your observable
+  ngOnInit(): void {
+    this.taskService.getTasks().subscribe((tasks) => (this.tasks = tasks));
+  }
+
+  deleteTask(task: Task) {
+    //deletes task from data (server) and then filters out of UI
+    this.taskService
+      .deleteTask(task)
+      .subscribe(
+        () => (this.tasks = this.tasks.filter((t) => t.id !== task.id))
+      );
+  }
 }

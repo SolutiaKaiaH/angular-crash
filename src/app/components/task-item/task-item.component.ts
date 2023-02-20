@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Task } from 'src/app/Task';
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons';
 
@@ -9,5 +9,11 @@ import { faTimesCircle } from '@fortawesome/free-regular-svg-icons';
 })
 export class TaskItemComponent {
   @Input() task!: Task;
+  @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter();
   faTimesCircle = faTimesCircle;
+
+  onDelete(task: Task) {
+    //instead of calling here, we want it on the parent (tasks componenet)
+    this.onDeleteTask.emit(task);
+  }
 }
