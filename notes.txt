@@ -1,0 +1,7 @@
+install database: npm i json-server 
+run database: npm run server 
+
+run program: ng serve 
+
+generate service: ng generate service services/ui
+generate component: ng generate component components/hey
