@@ -10,10 +10,16 @@ import { faTimesCircle } from '@fortawesome/free-regular-svg-icons';
 export class TaskItemComponent {
   @Input() task!: Task;
   @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter();
+  @Output() onToggleReminder: EventEmitter<Task> = new EventEmitter();
   faTimesCircle = faTimesCircle;
 
   onDelete(task: Task) {
     //instead of calling here, we want it on the parent (tasks componenet)
     this.onDeleteTask.emit(task);
+  }
+
+  onToggle(task: Task) {
+    //instead of calling here, we want it on the parent (tasks componenet)
+    this.onToggleReminder.emit(task);
   }
 }
